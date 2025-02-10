@@ -1,21 +1,24 @@
-require('dotenv').config(); // Load environment variables
-const express = require('express');
-const connectDB = require('./Database'); // Import MongoDB connection
+const express = require("express");
+const connectDB = require("./MongoDB");
+
 const app = express();
+const PORT = process.env.PORT || 5000;
 
 // Connect to MongoDB
 connectDB();
+const mongoose = require("mongoose");
+require("dotenv").config(); // Load environment variables
 
-// Middleware
-app.use(express.json()); // Allows handling JSON data
+const Mongo_URL = process.env.MONGO_URL; // Ensure your .env file contains MONGO_URI
 
-// Test Route
-app.get('/ping', (req, res) => {
-    res.send('pong');
-});
+mongoose.connect(Mongo_URL);
 
-// Start Server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`🚀 Server is running on http://localhost:${PORT}`);
+const db = mongoose.connection;
+
+db.on("error", (err) => console.error("MongoDB connection error:", err));
+db.once("open", () => console.log("Connected to MongoDB successfully"));
+
+app.get("/", (req, res) => {
+    const dbStatus = mongoose.connection.readyState === 1 ? "Connected" : "Not Connected";
+    res.json({ databaseStatus: dbStatus });
 });
