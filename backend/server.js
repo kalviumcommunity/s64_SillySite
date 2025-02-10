@@ -1,24 +1,27 @@
-const express = require("express");
-const connectDB = require("./MongoDB");
+// server.js
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const dotenv = require('dotenv');
+const ideaRoutes = require('./routes/routes'); // Adjusted path for routes.js
 
+dotenv.config();
 const app = express();
-const PORT = process.env.PORT || 5000;
+
+// Middleware
+app.use(cors());
+app.use(express.json());
 
 // Connect to MongoDB
-connectDB();
-const mongoose = require("mongoose");
-require("dotenv").config(); // Load environment variables
+mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
+.then(() => console.log('MongoDB connected'))
+.catch(err => console.error('MongoDB connection error:', err));
 
-const Mongo_URL = process.env.MONGO_URL; // Ensure your .env file contains MONGO_URI
+// Routes
+app.use('/api', ideaRoutes); // Prefixing routes with '/api'
 
-mongoose.connect(Mongo_URL);
-
-const db = mongoose.connection;
-
-db.on("error", (err) => console.error("MongoDB connection error:", err));
-db.once("open", () => console.log("Connected to MongoDB successfully"));
-
-app.get("/", (req, res) => {
-    const dbStatus = mongoose.connection.readyState === 1 ? "Connected" : "Not Connected";
-    res.json({ databaseStatus: dbStatus });
-});
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
