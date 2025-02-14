@@ -54,4 +54,5 @@
 ---
 
 
-***DEPLOYMENT LINK*** -: https://s64-sillysite-1.onrender.com
+***BACKEND DEPLOYMENT LINK*** -: https://s64-sillysite-1.onrender.com
+***FRONTEND DEPLOYMENT LINK*** -: https://elaborate-bombolone-b7580d.netlify.app/
