@@ -1,0 +1,242 @@
+/* Signup Container Styles */
+.signup-container {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(255, 107, 107, 0.2);
+    max-width: 500px;
+    margin: 20px auto;
+    animation: fadeIn 0.5s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .signup-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(255, 64, 129, 0.3);
+    background: rgba(255, 255, 255, 0.25);
+  }
+  
+  /* Form Group Styles */
+  .form-group {
+    margin-bottom: 20px;
+    position: relative;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #ff4081;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.4);
+  }
+  
+  /* Input Field Styles */
+  .form-input {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #333;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+  }
+  
+  .form-input:focus {
+    outline: none;
+    border-color: rgba(255, 64, 129, 0.5);
+    transform: scale(1.01);
+    box-shadow: 0 0 15px rgba(255, 64, 129, 0.2);
+    background: rgba(255, 255, 255, 0.4);
+  }
+  
+  .form-input::placeholder {
+    color: rgba(51, 51, 51, 0.7);
+  }
+  
+  /* Input Container for Username with Button */
+  .input-with-button {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .input-with-button .form-input {
+    flex: 1;
+  }
+  
+  /* Inspire Button Styles */
+  .inspire-button {
+    padding: 8px;
+    min-width: 120px;
+    background: rgba(255, 107, 107, 0.3);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    color: #ff4081;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+  }
+  
+  .inspire-button:hover {
+    animation: spin 0.5s linear;
+    background: rgba(255, 107, 107, 0.4);
+    box-shadow: 0 0 15px rgba(255, 107, 107, 0.3);
+  }
+  
+  /* Select Dropdown Styles */
+  .silliness-select {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #333;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff4081' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    transition: all 0.3s ease;
+  }
+  
+  .silliness-select:hover {
+    background: rgba(255, 255, 255, 0.4);
+    border-color: rgba(255, 64, 129, 0.5);
+  }
+  
+  /* Submit Button Styles */
+  .signup-button {
+    width: 100%;
+    padding: 15px;
+    background: rgba(255, 64, 129, 0.7);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+    font-weight: bold;
+  }
+  
+  .signup-button::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: rotate(45deg);
+    transition: all 0.3s ease;
+  }
+  
+  .signup-button:hover {
+    animation: bounce 0.5s ease-in-out infinite;
+    background: rgba(255, 64, 129, 0.8);
+    box-shadow: 0 5px 15px rgba(255, 64, 129, 0.3);
+  }
+  
+  .signup-button:hover::after {
+    animation: shine 1.5s ease-in-out infinite;
+  }
+  
+  /* Login Link Styles */
+  .login-link {
+    margin-top: 20px;
+    color: #ff4081;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .login-link a {
+    color: #ff4081;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  
+  .login-link a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background: #ff4081;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+  
+  .login-link a:hover::after {
+    transform: scaleX(1);
+  }
+  
+  /* Error Message Styles */
+  .error-message {
+    color: #ff6b6b;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    animation: shake 0.5s ease-in-out;
+  }
+  
+  /* Animations */
+  @keyframes shine {
+    0% { transform: translateX(-200%) rotate(45deg); }
+    100% { transform: translateX(200%) rotate(45deg); }
+  }
+  
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+  
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(-20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 600px) {
+    .signup-container {
+      margin: 20px 15px;
+      padding: 20px;
+    }
+  
+    .input-with-button {
+      flex-direction: column;
+    }
+  
+    .inspire-button {
+      width: 100%;
+    }
+  }
