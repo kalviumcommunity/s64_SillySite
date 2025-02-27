@@ -4,7 +4,8 @@
   "description": "**The Ultimate List of Silly Website Ideas** is a fun and creative platform designed to inspire users by showcasing the most absurd and ridiculous ideas for websites. Users can log in, create personalized lists of silly ideas, vote on others' contributions, and explore categories like \"Food Crimes\" or \"Pets Doing Human Things.\" It's a lighthearted project aimed at blending humor with full-stack web development skills.",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
