@@ -26,11 +26,34 @@ const SignUp = () => {
     setFormData({ ...formData, username: sillyUsernameSuggestions[random] });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add your signup logic here
-    console.log("Form submitted:", formData);
-    navigate("/dashboard"); // Redirect after signup
+    
+    try {
+      const response = await fetch("http://localhost:3000/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: formData.username,
+          email: formData.email,
+          password: formData.password,
+        }),
+      });
+  
+      const data = await response.json(); 
+  
+      if (response.ok) {
+        alert("Signup successful! You can now log in.");
+        navigate("/login"); // Redirect to login page
+      } else {
+        alert(`Error: ${data.error}`);
+      }
+    } catch (error) {
+      console.error("Signup error:", error);
+      alert("Something went wrong. Please try again.");
+    }
   };
 
   const handleChange = (e) => {
