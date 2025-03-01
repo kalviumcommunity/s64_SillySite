@@ -1,7 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Join from "./pages/Join";
-import Signup from "./components/Signup"; // Import Signup page
+import SignUpPage from "./pages/signup";
+import LandingPage from "./pages/LandingPage";
 import "./App.css";
 
 function App() {
@@ -11,7 +12,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/join" element={<Join />} />
-          <Route path="/signup" element={<Signup />} /> {/* Added Signup route */}
+          <Route path="/signup" element={<SignUpPage/>} /> {/* Added Signup route */}
+          <Route path="/landing/:userId" element={<LandingPage />} />
         </Routes>
       </div>
     </Router>
