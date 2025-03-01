@@ -46,7 +46,7 @@ const SignUp = () => {
   
       if (response.ok) {
         alert("Signup successful! You can now log in.");
-        navigate("/login"); // Redirect to login page
+        navigate(`/landing/${data.userId}`); // Redirect to login page
       } else {
         alert(`Error: ${data.error}`);
       }
