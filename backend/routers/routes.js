@@ -87,17 +87,44 @@ router.delete('/users/:id', async (req, res) => {
     }
 });
 
+
+
 // Add a Silly Idea
 router.post('/ideas', async (req, res) => {
     try {
         const { title, description, category, userId } = req.body;
+        
+        if (!title || !description || !category || !userId) {
+            return res.status(400).json({ message: "All fields are required" });
+        }
+
         const idea = new Idea({ title, description, category, user: userId });
         await idea.save();
+
         res.status(201).json(idea);
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        console.error("Error creating idea:", error);
+        res.status(500).json({ message: "Server error", error: error.message });
     }
 });
+
+
+//  Delete an idea by ID
+router.delete("/ideas/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const deletedIdea = await Idea.findByIdAndDelete(id);
+      
+      if (!deletedIdea) {
+        return res.status(404).json({ message: "Idea not found" });
+      }
+  
+      res.status(200).json({ message: "Idea deleted successfully" });
+    } catch (error) {
+      res.status(500).json({ error: "Error deleting idea" });
+    }
+  });
+  
 
 // Get All Ideas
 router.get('/ideas', async (req, res) => {
@@ -108,6 +135,17 @@ router.get('/ideas', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+
+router.get("/ideas/user/:userId", async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const ideas = await Idea.find({ user: userId }).sort({ createdAt: -1 }); // Get latest ideas first
+      res.status(200).json(ideas);
+    } catch (error) {
+      res.status(500).json({ error: "Error fetching ideas" });
+    }
+  });
+  
 
 // Upvote an Idea
 router.post('/ideas/:id/upvote', async (req, res) => {

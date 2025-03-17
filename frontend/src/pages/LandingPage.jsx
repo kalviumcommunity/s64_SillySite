@@ -1,9 +1,12 @@
 import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
+import MyIdeas from "../components/Myidea";
 import "../styles/landing.css"
 
 const LandingPage = () => {
+  const navigate = useNavigate();
   const { userId } = useParams(); // Get user ID from URL
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -103,7 +106,7 @@ const LandingPage = () => {
       
       {loading ? (
         <div className="loading-container">
-          <p className="loading-message">{randomLoadingMessage} ⏳</p>
+          <p className="loading-message">{randomLoadingMessage}⏳</p>
           <div className="bouncing-letters">
             {[..."LOADING"].map((letter, i) => (
               <span 
@@ -139,16 +142,7 @@ const LandingPage = () => {
             You're officially a member of <span className="silly-highlight">SillySite!</span> 🎭
           </p>
           
-          <div className="image-container">
-            <img 
-              src="/api/https://i.imgflip.com/1vzy8u.jpg/300/200"
-              alt="Funny Gif"
-              className="silly-image"
-            />
-            <div className="image-overlay">
-              <p className="overlay-text">Super silly image!</p>
-            </div>
-          </div>
+
           
           <div className="joke-container">
             <p className="joke-title">Daily Dose of Silliness:</p>
@@ -156,18 +150,19 @@ const LandingPage = () => {
           </div>
           
           <div className="button-container">
-            <button className="share-button">
+            <button className="share-button" onClick={() => navigate("/share-idea")}>
               Share Silly Idea 💡
             </button>
             <button className="friend-button">
               Find Friends 🧑‍🤝‍🧑
             </button>
           </div>
-          
+          <MyIdeas />
           <p className="footer-text">
             Now go share your wackiest ideas! <span className="bouncing-rocket">🚀</span>
           </p>
         </div>
+        
       )}
   <Footer/>
     </div>
