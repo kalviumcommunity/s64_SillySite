@@ -3,7 +3,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const router = require('./routers/routes'); 
+const router1 = require('./routers/UserRoutes')
+const router2 = require('./routers/IdeaRoutes');
 
 dotenv.config();
 const app = express();
@@ -19,7 +20,8 @@ mongoose.connect(process.env.MONGO_URI)
 .catch(err => console.error('Oops !! MongoDB connection failed:', err));
 
 // Routes
-app.use('/api', router); // Prefixing routes with '/api'
+app.use('/api', router1); // Prefixing routes with '/api'
+app.use('/api', router2); // Prefixing routes with '/api'
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
