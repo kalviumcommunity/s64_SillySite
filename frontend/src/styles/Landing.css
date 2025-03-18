@@ -17,19 +17,26 @@
   
   /* Emoji background */
   .emoji-background {
-    position: absolute;
-    inset: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     overflow: hidden;
     pointer-events: none;
-  }
-  
-  .floating-emoji {
+    z-index: -1;
+}
+
+.floating-emoji {
     position: absolute;
-    font-size: 2rem;
-    opacity: 0.6;
-    animation: float linear infinite;
-  }
-  
+    font-size: 2.5rem; /* Adjust size */
+    opacity: 0.8;
+    animation: floatEmojis linear infinite;
+}
+
+
+
+
   /* Title and subtitle */
   .silly-title {
     font-size: 3rem;
@@ -116,10 +123,10 @@
     transform: rotate(0);
     transition: transform 0.3s;
   }
-  
+/*   
   .user-card:hover {
     transform: rotate(1deg);
-  }
+  } */
   
   .username-container {
     position: relative;
@@ -242,7 +249,7 @@
   
   .friend-button:hover {
     background-color: rgb(22, 163, 74);
-    transform: scale(1.05) rotate(3deg);
+    transform: scale(1.05) ;
   }
   
   /* Footer */
@@ -258,10 +265,18 @@
   }
   
   /* Animations */
-  @keyframes float {
-    0% { transform: translate(0, 0) rotate(0deg); }
-    50% { transform: translate(20px, -30px) rotate(10deg); }
-    100% { transform: translate(0, -60px) rotate(0deg); opacity: 0; }
+  
+
+ 
+  @keyframes floatEmojis {
+      0% {
+          transform: translateY(100vh) rotate(0deg);
+          opacity: 1;
+      }
+      100% {
+          transform: translateY(-10vh) rotate(360deg);
+          opacity: 0;
+      }
   }
   
   @keyframes bounce {
