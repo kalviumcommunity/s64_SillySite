@@ -5,6 +5,7 @@ import SignUpPage from "./pages/signup";
 import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/login";
 import ShareIdeaForm from "./components/ShareIdeaForm";
+import FindFriends from "./components/Find";
 import "./App.css";
 // const userId = '67c284cd5ac1769e93e14b7f';
 
@@ -15,10 +16,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/join" element={<Join />} />
-          <Route path="/signup" element={<SignUpPage/>} /> {/* Added Signup route */}
+          <Route path="/signup" element={<SignUpPage/>} /> 
           <Route path="/landing/:userId" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/share-idea" element={<ShareIdeaForm />} />
+          <Route path ="/find" element={<FindFriends />} />
         </Routes>
       </div>
     </Router>

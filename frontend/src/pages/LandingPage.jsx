@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import MyIdeas from "../components/Myidea";
-import "../styles/landing.css"
+import "../styles/landing.css";
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -75,23 +75,22 @@ const LandingPage = () => {
 
   return (
     <div className="silly-container">
-      {/* Floating emojis background */}
-      <div className="emoji-background">
-        {['🎈', '🎭', '🤪', '🦄', '🍩', '👽', '🤡'].map((emoji, i) => (
-          <div 
-            key={i}
-            className="floating-emoji"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDuration: `${5 + Math.random() * 10}s`,
-              animationDelay: `${Math.random() * 5}s`,
-            }}
-          >
-            {emoji}
-          </div>
-        ))}
-      </div>
+   {/* Floating emojis background */}
+<div className="emoji-background">
+  {['🎈', '🎭', '🤪', '🦄', '🍩', '👽', '🤡'].map((emoji, i) => (
+    <div 
+      key={i}
+      className="floating-emoji"
+      style={{
+        left: `${Math.random() * 100}%`,
+        animationDuration: `${5 + Math.random() * 10}s`,
+        animationDelay: `${Math.random() * 5}s`,
+      }}
+    >
+      {emoji}
+    </div>
+  ))}
+</div>
 
       <h1 
         ref={titleRef}
@@ -142,8 +141,6 @@ const LandingPage = () => {
             You're officially a member of <span className="silly-highlight">SillySite!</span> 🎭
           </p>
           
-
-          
           <div className="joke-container">
             <p className="joke-title">Daily Dose of Silliness:</p>
             <p className="joke-text">{joke}</p>
@@ -153,7 +150,7 @@ const LandingPage = () => {
             <button className="share-button" onClick={() => navigate("/share-idea")}>
               Share Silly Idea 💡
             </button>
-            <button className="friend-button">
+            <button className="friend-button" onClick={() => navigate("/Find")}>
               Find Friends 🧑‍🤝‍🧑
             </button>
           </div>
@@ -162,9 +159,7 @@ const LandingPage = () => {
             Now go share your wackiest ideas! <span className="bouncing-rocket">🚀</span>
           </p>
         </div>
-        
       )}
-  <Footer/>
     </div>
   );
 };

@@ -1,0 +1,121 @@
+/* General container styling */
+.container {
+    width: 40%;
+    margin: auto;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  /* Search box styling */
+  .search-box {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 2px solid #aaa;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+  
+  .search-box:focus {
+    border-color: #0077b6;
+    box-shadow: 0 0 10px rgba(0, 119, 182, 0.5);
+  }
+  
+  /* Users list styling */
+  .users-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  /* Individual user card */
+  .user-card {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .user-card:hover {
+    transform: scale(1.05) ;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Username styling */
+  .username {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  /* Description styling */
+  .user-desc {
+    color: gray;
+    font-size: 14px;
+  }
+  
+  /* Follow button styling */
+  .follow-btn {
+    width: 75%;
+    background: #ff4d6d;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+  
+  .follow-btn:hover {
+    background: #ff165d;
+    transform: scale(1.05);
+  }
+  
+  .followed {
+    background-color: #8d99ae;
+    cursor: not-allowed;
+  }
+  
+  /* Loading Animation */
+  .loading {
+    font-size: 18px;
+    font-weight: bold;
+    color: #0077b6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+  }
+  
+  .loading::after {
+    content: " ";
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-left: 8px;
+    border: 2px solid #0077b6;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 0.8s linear infinite;
+  }
+  
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Error Styling */
+  .error {
+    font-size: 16px;
+    color: #ff4d4d;
+    font-weight: bold;
+  }
+  

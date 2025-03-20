@@ -1,310 +1,69 @@
-/* landing.css */
-
-/* Main container */
-.silly-container {
-    min-height: 100vh;
-    /* background-image: linear-gradient(to right, #facc15, #ec4899); */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
-    padding: 1.5rem;
-    overflow: hidden;
-    position: relative;
-  }
-  
-  /* Emoji background */
-  .emoji-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    pointer-events: none;
-    z-index: -1;
+:root {
+  --primary-bg: rgba(255, 255, 255, 0.2); /* Light background */
+  --glass-bg: rgba(255, 255, 255, 0.3);
+  --border-color: rgba(255, 255, 255, 0.2);
+  --text-color: #333;
 }
+
+
+body {
+ 
+  font-family: 'Poppins', sans-serif;
+}
+
+.silly-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 100vh;
+  padding: 20px;
+  /* backdrop-filter: blur(10px); */
+  background: var(--glass-bg);
+  border-radius: 15px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.silly-title {
+  color: var(--text-color);
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.emoji-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
 
 .floating-emoji {
-    position: absolute;
-    font-size: 2.5rem; /* Adjust size */
-    opacity: 0.8;
-    animation: floatEmojis linear infinite;
+  position: absolute;
+  font-size: 2rem;
+  opacity: 0;
+  animation: floatUp 5s infinite ease-in-out;
 }
 
-
-
-
-  /* Title and subtitle */
-  .silly-title {
-    font-size: 3rem;
-    font-weight: bold;
-    margin-bottom: 1.5rem;
-    animation: bounce 2s infinite;
-    cursor: pointer;
-    transition: transform 0.3s;
-  }
-  
-  .silly-subtitle {
-    font-size: 1.25rem;
-    margin-bottom: 2rem;
-    transition: transform 0.3s;
-  }
-  
-  .silly-subtitle:hover {
-    transform: scale(1.1);
-  }
-  
-  .spinning-emoji {
-    display: inline-block;
-    animation: spin 2s linear infinite;
-  }
-  
-  /* Loading state */
-  .loading-container {
-    font-size: 1.25rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .loading-message {
-    animation: pulse 2s infinite;
-    margin-bottom: 1rem;
-  }
-  
-  .bouncing-letters {
-    display: flex;
-    gap: 0.5rem;
-  }
-  
-  .bounce-letter {
-    display: inline-block;
-    animation: bounce 0.5s ease infinite;
-  }
-  
-  /* Error state */
-  .error-container {
-    font-size: 1.25rem;
-    color: rgb(254, 226, 226);
-    background-color: rgb(239, 68, 68);
-    padding: 1.5rem;
-    border-radius: 0.75rem;
-    animation: wiggle 1s infinite;
-  }
-  
-  .retry-button {
-    margin-top: 1rem;
-    background-color: white;
-    color: rgb(239, 68, 68);
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .retry-button:hover {
-    background-color: rgb(254, 226, 226);
-  }
-  
-  /* User card */
-  .user-card {
-    background-color: white;
-    padding: 1.5rem;
-    border-radius: 0.75rem;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    color: black;
-    width: 100%;
-    max-width: 28rem;
-    text-align: center;
-    transform: rotate(0);
-    transition: transform 0.3s;
-  }
-/*   
-  .user-card:hover {
-    transform: rotate(1deg);
-  } */
-  
-  .username-container {
-    position: relative;
-  }
-  
-  .username {
-    font-size: 2.25rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    color: rgb(37, 99, 235);
-    transition: color 0.3s;
-  }
-  
-  .username:hover {
-    color: rgb(124, 58, 237);
-  }
-  
-  .sparkle {
-    position: absolute;
-    top: -0.5rem;
-    right: -0.5rem;
-    font-size: 1.5rem;
-    animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
-  }
-  
-  .membership-text {
-    color: rgb(55, 65, 81);
-    font-size: 1.25rem;
-  }
-  
-  .silly-highlight {
-    font-weight: bold;
-    color: rgb(236, 72, 153);
-    animation: pulse 2s infinite;
-  }
-  
-  /* Image section */
-  .image-container {
-    margin-top: 1rem;
-    overflow: hidden;
-    border-radius: 0.75rem;
-    position: relative;
-  }
-  
-  .silly-image {
-    width: 100%;
-    height: auto;
-    transition: transform 0.3s;
-  }
-  
-  .silly-image:hover {
-    transform: scale(1.1);
-  }
-  
-  .image-overlay {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0.5);
+@keyframes floatUp {
+  0% {
+    transform: translateY(100vh);
     opacity: 0;
-    transition: opacity 0.3s;
   }
-  
-  .image-container:hover .image-overlay {
+  30% {
     opacity: 1;
   }
-  
-  .overlay-text {
-    color: white;
-    font-weight: bold;
+  70% {
+    opacity: 1;
   }
-  
-  /* Joke section */
-  .joke-container {
-    margin-top: 1.5rem;
-    padding: 1rem;
-    background-color: rgb(254, 243, 199);
-    border-radius: 0.5rem;
+  100% {
+    transform: translateY(-10vh);
+    opacity: 0;
   }
-  
-  .joke-title {
-    font-size: 0.875rem;
-    font-style: italic;
-    font-weight: bold;
-  }
-  
-  .joke-text {
-    margin-top: 0.5rem;
-  }
-  
-  /* Button section */
-  .button-container {
-    margin-top: 1.5rem;
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-  }
-  
-  .share-button, .friend-button {
-    background-color: rgb(59, 130, 246);
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    border: none;
-    cursor: pointer;
-    transform: scale(1);
-    transition: background-color 0.3s, transform 0.3s;
-  }
-  
-  .share-button:hover {
-    background-color: rgb(37, 99, 235);
-    transform: scale(1.05);
-  }
-  
-  .friend-button {
-    background-color: rgb(34, 197, 94);
-  }
-  
-  .friend-button:hover {
-    background-color: rgb(22, 163, 74);
-    transform: scale(1.05) ;
-  }
-  
-  /* Footer */
-  .footer-text {
-    margin-top: 1.5rem;
-    font-size: 0.875rem;
-    font-style: italic;
-  }
-  
-  .bouncing-rocket {
-    display: inline-block;
-    animation: bounce 1s infinite;
-  }
-  
-  /* Animations */
-  
-
- 
-  @keyframes floatEmojis {
-      0% {
-          transform: translateY(100vh) rotate(0deg);
-          opacity: 1;
-      }
-      100% {
-          transform: translateY(-10vh) rotate(360deg);
-          opacity: 0;
-      }
-  }
-  
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-  }
-  
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-  }
-  
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-  
-  @keyframes wiggle {
-    0% { transform: rotate(0deg); }
-    25% { transform: rotate(2deg); }
-    50% { transform: rotate(0deg); }
-    75% { transform: rotate(-2deg); }
-    100% { transform: rotate(0deg); }
-  }
-  
-  @keyframes ping {
-    75%, 100% {
-      transform: scale(2);
-      opacity: 0;
-    }
-  }
+}
