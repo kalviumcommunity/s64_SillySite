@@ -11,7 +11,7 @@ const FindFriends = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/users"); // Fetch from backend API
+        const response = await fetch("http://localhost:3000/api/mysql/users"); // Fetch from backend API
         if (!response.ok) throw new Error("Failed to fetch users");
         const data = await response.json();
         setUsers(data);
