@@ -12,7 +12,7 @@ const MyIdeas = () => {
   useEffect(() => {
     const fetchIdeas = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/api/ideas/user/${userId}`);
+        const response = await axios.get(`http://localhost:3000/api/mysql/ideas/user/${userId}`);
         setIdeas(response.data);
       } catch (error) {
         console.error("Error fetching ideas:", error);
@@ -30,7 +30,7 @@ const MyIdeas = () => {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`http://localhost:3000/api/ideas/${id}`);
+      await axios.delete(`http://localhost:3000/api/mysql/ideas/${id}`);
       setIdeas(ideas.filter((idea) => idea._id !== id)); // Remove the idea from the UI
     } catch (error) {
       console.error("Error deleting idea:", error);

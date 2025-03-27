@@ -50,6 +50,10 @@ body {
   opacity: 0;
   animation: floatUp 5s infinite ease-in-out;
 }
+.share-button{
+  background: #ff4d6d;
+  color: white;
+}
 
 @keyframes floatUp {
   0% {

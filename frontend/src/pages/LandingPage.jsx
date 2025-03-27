@@ -42,7 +42,7 @@ const LandingPage = () => {
   useEffect(() => {
     // Fetch with a deliberate small delay to show our funny loading state
     setTimeout(() => {
-      fetch(`http://localhost:3000/api/users/${userId}`)
+      fetch(`http://localhost:3000/api/mysql/users/${userId}`)
         .then((response) => response.json())
         .then((data) => {
           setUser(data); // Store user data

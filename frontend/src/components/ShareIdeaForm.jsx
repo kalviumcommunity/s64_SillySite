@@ -32,9 +32,9 @@ const ShareIdeaForm = () => {
       const userId = "67a9e0ff1505e6a129a1d1df"; // Replace with actual user ID (get from context or local storage)
   
       if (id) {
-        await axios.put(`http://localhost:3000/api/ideas/${id}`, { title, description, category, userId });
+        await axios.put(`http://localhost:3000/api/mysql/ideas/${id}`, { title, description, category, userId });
       } else {
-        await axios.post("http://localhost:3000/api/ideas", { title, description, category, userId });
+        await axios.post("http://localhost:3000/api/mysql/ideas", { title, description, category, userId });
       }
   
       navigate("/landing/67a9e0ff1505e6a129a1d1df"); // Redirect after submission
