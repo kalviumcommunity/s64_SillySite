@@ -30,7 +30,7 @@ const SignUp = () => {
     e.preventDefault();
     
     try {
-      const response = await fetch("http://localhost:3000/api/mysql/register", {
+      const response = await fetch("http://localhost:3000/api/mongo/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

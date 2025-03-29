@@ -1,8 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const { User, Idea } = require('../models/schema');
+const { User } = require('../models/schema');
 const bcrypt = require('bcrypt');
-// const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
+require('dotenv').config();
+
+router.use(cookieParser());
+
+const JWT_SECRET = process.env.JWT_SECRET || 'your_secret_key';
 
 // User Registration
 router.post('/register', async (req, res) => {
@@ -18,24 +24,39 @@ router.post('/register', async (req, res) => {
 });
 
 // User Login
-router.post('/login', async (req, res) => {
+router.post("/login", async (req, res) => {
     try {
         const { email, password } = req.body;
         const user = await User.findOne({ email });
-        if (!user) return res.status(400).json({ error: 'User not found' });
+
+        if (!user) return res.status(400).json({ error: "User not found" });
 
         const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) return res.status(400).json({ error: 'Invalid credentials' });
+        if (!isMatch) return res.status(400).json({ error: "Invalid credentials" });
 
-        const token = jwt.sign({ userId: user._id }, 'secretkey', { expiresIn: '1h' });
-        res.json({ token });
+        const token = jwt.sign({ userId: user._id }, "secretkey", { expiresIn: "1h" });
+
+        res.json({ token, userId: user._id });  // Send userId along with token
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 });
 
-// Get All Users
-router.get('/users', async (req, res) => {
+
+// Middleware to Protect Routes
+const authenticateUser = (req, res, next) => {
+    const token = req.cookies.token;
+    if (!token) return res.status(401).json({ error: 'Unauthorized: No token provided' });
+
+    jwt.verify(token, JWT_SECRET, (err, decoded) => {
+        if (err) return res.status(403).json({ error: 'Invalid token' });
+        req.user = decoded;
+        next();
+    });
+};
+
+// Get All Users (Protected Route)
+router.get('/users', authenticateUser, async (req, res) => {
     try {
         const users = await User.find();
         res.json(users);
@@ -44,8 +65,8 @@ router.get('/users', async (req, res) => {
     }
 });
 
-// Get User by ID
-router.get('/users/:id', async (req, res) => {
+// Get User by ID (Protected)
+router.get('/users/:id', authenticateUser, async (req, res) => {
     try {
         const user = await User.findById(req.params.id);
         if (!user) return res.status(404).json({ error: 'User not found' });
@@ -55,20 +76,18 @@ router.get('/users/:id', async (req, res) => {
     }
 });
 
-// Update User by ID
-router.put('/users/:id', async (req, res) => {
+// Update User by ID (Protected)
+router.put('/users/:id', authenticateUser, async (req, res) => {
     try {
         const { username, email, password } = req.body;
-        const hashedPassword = password ? await bcrypt.hash(password, 10) : undefined;
-        const updatedUser = await User.findByIdAndUpdate(
-            req.params.id,
-            {
-                username,
-                email,
-                password: hashedPassword || undefined
-            },
-            { new: true }
-        );
+        let updateData = { username, email };
+
+        if (password) {
+            updateData.password = await bcrypt.hash(password, 10);
+        }
+
+        const updatedUser = await User.findByIdAndUpdate(req.params.id, updateData, { new: true });
+
         if (!updatedUser) return res.status(404).json({ error: 'User not found' });
         res.json(updatedUser);
     } catch (error) {
@@ -76,8 +95,8 @@ router.put('/users/:id', async (req, res) => {
     }
 });
 
-// Delete User by ID
-router.delete('/users/:id', async (req, res) => {
+// Delete User by ID (Protected)
+router.delete('/users/:id', authenticateUser, async (req, res) => {
     try {
         const user = await User.findByIdAndDelete(req.params.id);
         if (!user) return res.status(404).json({ error: 'User not found' });
@@ -87,8 +106,10 @@ router.delete('/users/:id', async (req, res) => {
     }
 });
 
-
-
-
+// Logout - Clears Cookie
+router.post('/logout', (req, res) => {
+    res.clearCookie('token');
+    res.json({ message: 'Logged out successfully' });
+});
 
 module.exports = router;
